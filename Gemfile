@@ -48,6 +48,8 @@ gem 'pg'
 
 gem 'devise'
 
+gem 'kaminari'
+
 gem 'devise-bootstrap-views', '~> 1.0'
 # Use Sass to process CSS
 # gem "sassc-rails"

@@ -4,6 +4,6 @@ class HomeController < ApplicationController
     end 
     
     def help
-         render 'welcome/index'
+         render 'help/help_page'
     end  
 end 
