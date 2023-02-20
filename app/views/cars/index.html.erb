@@ -67,12 +67,12 @@ Total count of found cars: <%=  @cars_total.count %>
 
 <%= link_to new_car_path do %>
    <%= form_with  do |f|%>
-    <%=f.submit 'New car'%>
+      <%=f.submit 'New car'%>
     <% end %>
 <% end %>
 
 <div class ='row'>
-<div class ='col-7 offset-5'>
-<%= paginate @cars %>
-<div>
+  <div class ='col-7 offset-5'>
+    <%= paginate @cars %>
+  <div>
 <div>
