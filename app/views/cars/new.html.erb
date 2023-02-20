@@ -5,5 +5,11 @@
 <br>
 
 <div>
-  <%= link_to "Back to cars", cars_path %>
+  <%= link_to cars_path do %>
+   <%= form_with  do |f|%>
+    <%=f.submit 'Back to cars'%>
+    <% end %>
+<% end %>
 </div>
+
+

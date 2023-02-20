@@ -48,6 +48,8 @@ gem 'pg'
 
 gem 'devise'
 
+gem 'pry'
+
 gem 'kaminari'
 
 gem 'devise-bootstrap-views', '~> 1.0'
