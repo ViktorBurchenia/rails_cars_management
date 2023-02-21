@@ -10,5 +10,4 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'home', to: 'home#homepage'
   get 'help', to: 'home#help'
-  get 'search', to: 'cars#search'
 end
