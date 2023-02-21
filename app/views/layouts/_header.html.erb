@@ -1,37 +1,48 @@
- <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-      </a>
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+  <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+  </a>
 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li>
-        <a href="/home" class= '<%= "nav-link px-2 #{1+1 == 2 ? 'link-secondary' : 'link-dark'}" %>'
-          >Home</a> 
-        </li>
-        <li>
-        <li><a href="/help" class="nav-link px-2 link-dark">Help</a></li>
-        <li><a href="/cars" class="nav-link px-2 link-dark">Cars List</a></li>
-        <li><a href="/search" class="nav-link px-2 link-dark">Search</a></li>
-        <%- if user_signed_in? %>
-          <li><a href="/user_searches" class="nav-link px-2 link-dark">My Searches</a></li> 
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+
+    <li> <%= link_to t('header.home'), home_path,  class: "nav-link px-2 link-dark"%></li>
+    <li> <%= link_to t('header.help'), help_path,  class: "nav-link px-2 link-dark"%></li>
+    <li> <%= link_to t('header.car_list'), cars_path,  class: "nav-link px-2 link-dark"%></li>
+    <li> <%= link_to t('header.car_search'), search_path,  class: "nav-link px-2 link-dark"%></li>
+    <%- if user_signed_in? %>
+    <li> <%= link_to t('header.my_search'), user_searches_path, class: "nav-link px-2 link-dark"%></li>
+    <% end %>
+    <li class="d-flex align-items-center">
+     <%= t('header.language')%>
+      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle mx-2" data-bs-toggle="dropdown" aria-expanded="true">
+      </a>
+      <ul class="dropdown-menu text-small">
+        <% I18n.available_locales.each do |locale| %>
+          <li>
+            <% if I18n.locale == locale %>
+              <%= tag.span t(locale), class: 'dropdown-item' %>
+            <% else %>
+              <%= link_to t(locale), url_for(locale: locale, path: request.fullpath),
+                class: 'dropdown-item' %>
+            <% end %>
+          </li>
         <% end %>
       </ul>
-      
-      <%- if user_signed_in? %>
-       <div class="col-md-3 text-end"> 
-         <%= button_to 'Logout', destroy_user_session_path, method: :delete, class:"btn btn-outline-primary me-2",  data: {turbolink: false} %>
-        </div>
-      <% else %>
-        <div class="col-md-3 text-end">
-        <%= link_to new_user_session_path do %>
-        <button type="button" class="btn btn-outline-primary me-2">Login</button>
-        <% end %>
-        <%= link_to new_user_registration_path do %>
-        <button type="button" class="btn btn-primary me-2">Sign-up</button>
-        <% end %>
-       </div>
-       <% end %>
-    </header>
+    </li>
+  </ul>
 
-
-    
+  <%- if user_signed_in? %>
+   <div class="col-md-3 text-end"> 
+     <%= button_to t('header.log_out'), destroy_user_session_path, method: :delete, class:"btn btn-outline-primary me-2",  data: {turbolink: false} %>
+    </div>
+  <% else %>
+    <div class="col-md-3 text-end">
+    <%= link_to new_user_session_path do %>
+    <button type="button" class="btn btn-outline-primary me-2"><%= t('header.login')%></button>
+    <% end %>
+    <%= link_to new_user_registration_path do %>
+    <button type="button" class="btn btn-primary me-2"><%= t('header.sign_up')%></button>
+    <% end %>
+   </div>
+   <% end %>
+</header>

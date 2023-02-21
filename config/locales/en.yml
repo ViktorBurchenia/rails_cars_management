@@ -1,33 +1,46 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  header:
+    home: 'Home'
+    help: 'Help'
+    car_list: 'Car List'
+    car_search: 'Search'
+    my_search: 'My Searches'
+    language: 'Choose Language'
+    login: 'Login'
+    sign_up: 'Sign-up'
+    log_out: 'Logout'
+  home:
+    title: 'Home page'
+    description: "Hi, user"
+  help:
+    title: 'Help page'
+    rule_one: '1. If you wanna search needed car please click on "Search"'
+    rule_two: '2. If you wanna see all cars please click on "Cars_list"'
+    rule_three: '3. If you wanna see Home page please click on "Home"'
+    rule_four: '4. Also, you can sign in or sigh up just click on buttons upper, right side - "Login" or "Sign-up"'
+  cars_list:
+    title: 'Cars list'
+    count: 'Total count of found cars:'
+    table:
+      id: 'id'
+      make: 'make'
+      model: 'model'
+      year: 'year'
+      odometer: 'odometer'
+      price: 'price'
+      description: 'description'
+      date_added: 'date_added'
+    new_car: 'new car'
+    sort: 'sort'
+    show_car: 'show car'
+  cars_search:
+    title: 'Car Search'
+    parameters:
+      make: 'make'
+      model: 'model'
+      year_from: 'year_from'
+      year_to: 'year_to'
+      price_from: 'price_from'
+      price_to: 'price_to'
+      search: 'search'
+      
