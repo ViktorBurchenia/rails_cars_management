@@ -1,0 +1,15 @@
+<h1>New car</h1>
+
+<%= render "form", car: @car %>
+
+<br>
+
+  <div>
+    <%= link_to cars_path do %>
+      <%= form_with  do |f|%>
+        <%=f.submit 'Back to cars'%>
+      <% end %>
+    <% end %>
+  </div>
+
+
