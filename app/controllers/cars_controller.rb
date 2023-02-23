@@ -72,44 +72,35 @@ class CarsController < ApplicationController
     render 'search/search_car'
   end
 
-
   private
 
   def build_search_params
     search_params = {}
     search_params[:make] = params[:make] if params[:make].present?
     search_params[:model] = params[:model] if params[:model].present?
-  
+
     add_year_param(search_params)
     add_price_param(search_params)
-  
+
     search_params
   end
-  
+
   def add_year_param(search_params)
-    if params[:year_from].present? && params[:year_to].present?
-      search_params[:year] = (params[:year_from].to_i..params[:year_to].to_i)
-    elsif params[:year_from].present?
-      search_params[:year] = (params[:year_from].to_i..Float::INFINITY)
-    elsif params[:year_to].present?
-      search_params[:year] = (1..params[:year_to].to_i)
-    end
+    year_from = params[:year_from].present? ? params[:year_from].to_i : 1
+    year_to = params[:year_to].present? ? params[:year_to].to_i : Float::INFINITY
+    search_params[:year] = (year_from..year_to)
   end
-  
+
   def add_price_param(search_params)
-    if params[:price_from].present? && params[:price_to].present?
-      search_params[:price] = (params[:price_from].to_i..params[:price_to].to_i)
-    elsif params[:price_from].present?
-      search_params[:price] = (params[:price_from].to_i..Float::INFINITY)
-    elsif params[:price_to].present?
-      search_params[:price] = (1..params[:price_to].to_i)
-    end
+    price_from = params[:price_from].present? ? params[:price_from].to_i : 1
+    price_to = params[:price_to].present? ? params[:price_to].to_i : Float::INFINITY
+    search_params[:price] = (price_from..price_to)
   end
 
   def custom_sorting
     sorting = SORTING[params[:sort_by]]
     @cars = Car.order(sorting).all.page params[:page]
-  end 
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_car
