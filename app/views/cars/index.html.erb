@@ -1,78 +1,27 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Cars_list</h1>
-Total count of found cars: <%=  @cars_total.count %>
-
-
+Total count of found cars: <%=  @cars_total %>
 
 <div>
   <%= form_with url: cars_path, method: :get, data: {turbo: false} do |f|%>
-    <%= f.select :sort_by, ['date_added_asc','date_added_desc', 'price_asc', 'price_desc'], selected: params[:sort_by]%>
-    <%= f.submit 'Sort'%>
+    <% %i[make model year_from year_to price_from price_to].each do |field|%>
+      <% next if params[field].blank? %>
+      <div>
+        <%=  "#{field.capitalize}: #{params[field]}" %>
+        <%= f.hidden_field field, value: params[field] %>
+      </div>
+    <% end %>
+    <div>
+      <%= f.select :sort_by, ['date_added_asc','date_added_desc', 'price_asc', 'price_desc'], selected: params[:sort_by]%>
+      <%= f.submit 'Sort'%>
+    </div>
   <% end %>
-<div>
- 
-
-<div>
-<div id="cars">
-      <table class="table table-bordered table-hover table-fixed">
-        <thead>
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">make</th>
-            <th scope="col">model</th>
-            <th scope="col">year</th>
-            <th scope="col">odometer</th>
-            <th scope="col">price</th>
-            <th scope="col">description</th>
-            <th scope="col">date_added</th>
-          </tr>
-        </thead>
-        <tbody>
-         <% @cars.each do |car| %>
-          <tr>
-                <td>
-                  <%= car.id %>
-                </td>
-                <td>
-                  <%= car.make %>
-                </td>
-                <td>
-                  <%= car.model %>
-                </td>
-                <td>
-                  <%= car.year %>
-                </td>
-                <td>
-                  <%= car.odometer %>
-                </td>
-                <td>
-                  <%= car.price %>
-                </td>
-                <td>
-                  <%= car.description %>
-                </td>
-                <td>
-                  <%= car.date_added %>
-                </td>
-                <td>
-                  <%= link_to "Show this car", car %>
-                </td>
-
-          </tr>
-         <% end %>
-        </tbody>
-      </table>
 </div>
 
-<%= link_to new_car_path do %>
-   <%= form_with  do |f|%>
-      <%=f.submit 'New car'%>
-    <% end %>
-<% end %>
-
+<%= render 'cars/car'%>  
 <div class ='row'>
   <div class ='col-7 offset-5'>
     <%= paginate @cars %>
   <div>
-<div>
+<div> 

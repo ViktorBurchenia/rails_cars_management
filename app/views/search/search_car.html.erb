@@ -1,7 +1,7 @@
   <p style="color: green"><%= notice %></p>
   <h1>Search</h1>
 
-<%= form_with url: search_path, method: :get, data: {turbo: false}, class: 'search-form' do |form|%>
+<%= form_with url: cars_path, method: :get, data: {turbo: false}, class: 'search-form' do |form|%>
   <%= form.label :make, style: "display: block"%>
   <%= form.text_field :make, value: params[:make] %>
   <%= form.label :model, style: "display: block" %>
@@ -16,61 +16,3 @@
   <%= form.number_field :price_to, value: params[:price_to] %>
   <%=form.submit 'Search' %>
 <% end %>
-
-<%-if @cars != nil%>
-  <div id="cars">
-    <table class="table table-bordered table-hover table-fixed">
-      <thead>
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">make</th>
-          <th scope="col">model</th>
-          <th scope="col">year</th>
-          <th scope="col">odometer</th>
-          <th scope="col">price</th>
-          <th scope="col">description</th>
-          <th scope="col">date_added</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @cars&.each do |car| %>
-          <tr>
-                <td>
-                  <%= car.id %>
-                </td>
-                <td>
-                  <%= car.make %>
-                </td>
-                <td>
-                  <%= car.model %>
-                </td>
-                <td>
-                  <%= car.year %>
-                </td>
-                <td>
-                  <%= car.odometer %>
-                </td>
-                <td>
-                  <%= car.price %>
-                </td>
-                <td>
-                  <%= car.description %>
-                </td>
-                <td>
-                  <%= car.date_added %>
-                </td>
-                <td>
-                  <%= link_to "Show this car", car %>
-                </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-</div>
-<% end %>
-
-<div class ='row'>
-  <div class ='col-7 offset-5'>
-    <%= paginate @cars %>
-  <div>
-<div>
