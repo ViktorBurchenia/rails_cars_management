@@ -1,18 +1,25 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Cars_list</h1>
-Total count of found cars: <%=  @cars_total.count %>
-
-
+Total count of found cars: <%=  @cars_total %>
 
 <div>
   <%= form_with url: cars_path, method: :get, data: {turbo: false} do |f|%>
-    <%= f.select :sort_by, ['date_added_asc','date_added_desc', 'price_asc', 'price_desc'], selected: params[:sort_by]%>
-    <%= f.submit 'Sort'%>
+    <% %i[make model year_from year_to price_from price_to].each do |field|%>
+      <% next if params[field].blank? %>
+      <div>
+        <%=  "#{field.capitalize}: #{params[field]}" %>
+        <%= f.hidden_field field, value: params[field] %>
+      </div>
+    <% end %>
+    <div>
+      <%= f.select :sort_by, ['date_added_asc','date_added_desc', 'price_asc', 'price_desc'], selected: params[:sort_by]%>
+      <%= f.submit 'Sort'%>
+    </div>
   <% end %>
 </div>
 
-<%= render 'cars/car' %>  
+<%= render 'cars/car'%>  
 <div class ='row'>
   <div class ='col-7 offset-5'>
     <%= paginate @cars %>
