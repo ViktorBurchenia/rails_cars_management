@@ -14,6 +14,7 @@ class CarsController < ApplicationController
   def index
     @cars = Car.all.page params[:page]
     @cars_total = Car.all
+    @cars = Car.where(build_search_params).page(params[:page]) 
     custom_sorting if params[:sort_by].present?
   end
 
@@ -68,15 +69,14 @@ class CarsController < ApplicationController
 
   # GET /cars/1/edit
   def search
-    @cars = Car.where(build_search_params).page(params[:page])
-    render 'search/search_car'
+      render 'search/search_car'
   end
 
 
   private
 
   def build_search_params
-    search_params = {}
+    search_params = {} if search_params.nil?
     search_params[:make] = params[:make] if params[:make].present?
     search_params[:model] = params[:model] if params[:model].present?
   
@@ -108,13 +108,13 @@ class CarsController < ApplicationController
 
   def custom_sorting
     sorting = SORTING[params[:sort_by]]
-    @cars = Car.order(sorting).all.page params[:page]
+    @cars = @cars.order(sorting).all.page params[:page]
   end 
 
   # Use callbacks to share common setup or constraints between actions.
   def set_car
     @car = Car.find(params[:id])
-  end
+  end 
 
   # Only allow a list of trusted parameters through.
   def car_params
