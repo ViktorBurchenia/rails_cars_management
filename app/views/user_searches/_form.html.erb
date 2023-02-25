@@ -1,0 +1,57 @@
+<%= form_with(model: user_search) do |form| %>
+  <% if user_search.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user_search.errors.count, "error") %> prohibited this user_search from being saved:</h2>
+
+      <ul>
+        <% user_search.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :make, style: "display: block" %>
+    <%= form.text_field :make %>
+  </div>
+
+  <div>
+    <%= form.label :model, style: "display: block" %>
+    <%= form.text_field :model %>
+  </div>
+
+  <div>
+    <%= form.label :year_from, style: "display: block" %>
+    <%= form.number_field :year_from %>
+  </div>
+
+  <div>
+    <%= form.label :year_to, style: "display: block" %>
+    <%= form.number_field :year_to %>
+  </div>
+
+  <div>
+    <%= form.label :price_from, style: "display: block" %>
+    <%= form.number_field :price_from %>
+  </div>
+
+  <div>
+    <%= form.label :price_to, style: "display: block" %>
+    <%= form.number_field :price_to %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :date_search, style: "display: block" %>
+    <%= form.datetime_field :date_search %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user_search %>
+
+<div>
+  <%= link_to "Edit this user search", edit_user_search_path(@user_search) %> |
+  <%= link_to "Back to user searches", user_searches_path %>
+
+  <%= button_to "Destroy this user search", @user_search, method: :delete %>
+</div>

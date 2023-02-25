@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>User searches</h1>
+
+<div id="user_searches">
+  <% @user_searches.each do |user_search| %>
+    <%= render user_search %>
+    <p>
+      <%= link_to "Show this user search", user_search %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New user search", new_user_search_path %>
