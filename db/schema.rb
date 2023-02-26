@@ -34,7 +34,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_25_134459) do
     t.integer "price_from"
     t.integer "price_to"
     t.integer "user_id"
-    t.datetime "date_search"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

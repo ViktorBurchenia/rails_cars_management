@@ -8,7 +8,6 @@ class CreateUserSearches < ActiveRecord::Migration[7.0]
       t.integer :price_from
       t.integer :price_to
       t.integer :user_id
-      t.datetime :date_search
 
       t.timestamps
     end
