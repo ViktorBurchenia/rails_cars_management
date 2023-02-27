@@ -110,16 +110,17 @@ class CarsController < ApplicationController
   end
 
   def user_search_params
-    %i[make model year_from year_to price_from price_to].each_with_object({}) do |column,arr|
-      next if params[column].blank? 
+    %i[make model year_from year_to price_from price_to].each_with_object({}) do |column, arr|
+      next if params[column].blank?
+
       arr[column] = params[column]
-    end 
+    end
   end
 
   def my_search
-    if current_user.present? && params[:sort_by].nil? && user_search_params.present?
-      UserSearch.create(**user_search_params, user: current_user)
-    end 
+    return unless current_user.present? && params[:sort_by].nil? && user_search_params.present?
+
+    UserSearch.create(**user_search_params, user: current_user)
   end
 
   # Only allow a list of trusted parameters through.

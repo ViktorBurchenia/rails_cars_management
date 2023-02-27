@@ -1,42 +1,45 @@
-<div id="<%= dom_id user_search %>">
-  <p>
-    <strong>Make:</strong>
-    <%= user_search.make %>
-  </p>
-
-  <p>
-    <strong>Model:</strong>
-    <%= user_search.model %>
-  </p>
-
-  <p>
-    <strong>Year from:</strong>
-    <%= user_search.year_from %>
-  </p>
-
-  <p>
-    <strong>Year to:</strong>
-    <%= user_search.year_to %>
-  </p>
-
-  <p>
-    <strong>Price from:</strong>
-    <%= user_search.price_from %>
-  </p>
-
-  <p>
-    <strong>Price to:</strong>
-    <%= user_search.price_to %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= user_search.user_id %>
-  </p>
-
-  <p>
-    <strong>Date search:</strong>
-    <%= user_search.date_search %>
-  </p>
-
+<div id="user_search">
+  <table class="table table-bordered table-hover table-fixed">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Make</th>
+        <th scope="col">Model</th>
+        <th scope="col">Year from</th>
+        <th scope="col">Year to</th>
+        <th scope="col">Price from</th>
+        <th scope="col">Price to</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user_searches.each do |user_search| %>
+      <tr>
+        <td>
+          <%= user_search.id %>
+        </td>
+        <td>
+          <%= user_search.make %>
+        </td>
+        <td>
+          <%= user_search.model %>
+        </td>
+        <td>
+          <%= user_search.year_from %>
+        </td>
+        <td>
+          <%= user_search.year_to %>
+        </td>
+        <td>
+          <%= user_search.price_from%>
+        </td>
+        <td>
+          <%= user_search.price_to %>
+        </td>
+        <td>
+          <%= link_to 'show result', user_search %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
