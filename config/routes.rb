@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :user_searches
   resources :cars
   devise_for :users
   # get 'welcome/index'

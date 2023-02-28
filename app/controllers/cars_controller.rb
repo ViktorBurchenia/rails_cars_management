@@ -2,6 +2,7 @@
 
 class CarsController < ApplicationController
   before_action :set_car, only: %i[show edit update destroy]
+  # before_action :my_search, only: :index
 
   SORTING = {
     'date_added_asc' => { date_added: :asc },
@@ -16,6 +17,7 @@ class CarsController < ApplicationController
     @cars_total = cars.count
     @cars = cars.page(params[:page])
     custom_sorting if params[:sort_by].present?
+    my_search
   end
 
   # GET /cars/1 or /cars/1.json
@@ -105,6 +107,20 @@ class CarsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_car
     @car = Car.find(params[:id])
+  end
+
+  def user_search_params
+    %i[make model year_from year_to price_from price_to].each_with_object({}) do |column, arr|
+      next if params[column].blank?
+
+      arr[column] = params[column]
+    end
+  end
+
+  def my_search
+    return unless current_user.present? && params[:sort_by].nil? && user_search_params.present?
+
+    UserSearch.create(**user_search_params, user: current_user)
   end
 
   # Only allow a list of trusted parameters through.
