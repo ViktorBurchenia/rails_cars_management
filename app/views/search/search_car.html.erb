@@ -1,7 +1,8 @@
-  <h1>Search</h1>
+  <p style="color: green"><%= notice %></p>
+  <h1><%= t('cars_search.title')%></h1>
 
-<%= form_with url: cars_path, method: :get, data: {turbo: false}, class: 'search-form' do |form|%>
- <%= form.label t('cars_search.parameters.make'), style: "display: block" %>
+<%= form_with url: search_path, method: :get, data: {turbo: false}, class: 'search-form' do |form|%>
+  <%= form.label t('cars_search.parameters.make'),  style: "display: block"%>
   <%= form.text_field :make, value: params[:make] %>
   <%= form.label t('cars_search.parameters.model'), style: "display: block" %>
   <%= form.text_field :model, value: params[:model] %>
