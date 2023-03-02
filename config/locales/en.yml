@@ -43,4 +43,6 @@ en:
       price_from: 'price_from'
       price_to: 'price_to'
       search: 'search'
+  my_search:
+    title: 'My Searches'
       

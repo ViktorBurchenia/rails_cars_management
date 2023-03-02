@@ -43,4 +43,6 @@ uk:
       price_from: 'Ціна від'
       price_to: 'Ціна до'
       search: 'Пошук'
-      
+  my_search:
+    title: 'Мої Пошуки'
+    
