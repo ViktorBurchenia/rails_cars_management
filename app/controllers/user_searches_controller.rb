@@ -13,10 +13,6 @@ class UserSearchesController < ApplicationController
   def new
     @user_search = UserSearch.new
   end
-
-  # GET /user_searches/1/edit
-  def edit; end
-
   # POST /user_searches or /user_searches.json
   def create
     @user_search = UserSearch.new(user_search_params)
@@ -27,19 +23,6 @@ class UserSearchesController < ApplicationController
         format.json { render :show, status: :created, location: @user_search }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user_search.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /user_searches/1 or /user_searches/1.json
-  def update
-    respond_to do |format|
-      if @user_search.update(user_search_params)
-        format.html { redirect_to user_search_url(@user_search), notice: 'User search was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user_search }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @user_search.errors, status: :unprocessable_entity }
       end
     end
