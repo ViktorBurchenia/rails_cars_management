@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'factory_bot_rails'
 
@@ -75,27 +77,28 @@ RSpec.describe CarsController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:car_params) do {
-      car:
-        {
-          make: 'Honda',
-          model: 'Civic',
-          year: year,
-          odometer: 52421,
-          price: 15_000,
-          description: 'AWD',
-          date_added: '2013-04-25'
+    let(:car_params) do
+      {
+        car:
+          {
+            make: 'Honda',
+            model: 'Civic',
+            year:,
+            odometer: 52_421,
+            price: 15_000,
+            description: 'AWD',
+            date_added: '2013-04-25'
           }
-        }
+      }
     end
 
     context 'car was created' do
       let(:year) { 2022 }
 
       it 'add new car to db' do
-        expect {
+        expect do
           post :create, params: car_params
-        }.to change(Car, :count).by(1)
+        end.to change(Car, :count).by(1)
       end
     end
 
@@ -103,16 +106,16 @@ RSpec.describe CarsController, type: :controller do
       let(:year) { 2025 }
 
       it 'add new car to db' do
-        expect {
+        expect do
           post :create, params: car_params
-        }.not_to change(Car, :count)
+        end.not_to change(Car, :count)
       end
-    end 
+    end
   end
 
   describe 'PATCH #update' do
-    let!(:car) { create(:car, year:2000) }
-    let(:car_params)  { { car:{ year: year } } }
+    let!(:car) { create(:car, year: 2000) }
+    let(:car_params) { { car: { year: } } }
 
     context 'car was update' do
       let(:year) { 2022 }
@@ -139,9 +142,9 @@ RSpec.describe CarsController, type: :controller do
     let!(:car2) { create(:car) }
 
     it 'delete car from db' do
-      expect { 
+      expect do
         delete :destroy, params: { id: car1.id }
-      }.to change(Car, :count).from(2).to(1)
+      end.to change(Car, :count).from(2).to(1)
     end
   end
 end

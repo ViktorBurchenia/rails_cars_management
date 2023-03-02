@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/factories/cars.rb
 FactoryBot.define do
   factory :car do

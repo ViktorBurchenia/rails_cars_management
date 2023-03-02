@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserSearchesController < ApplicationController
   before_action :set_user_search, only: %i[show edit update destroy]
 
@@ -13,6 +15,7 @@ class UserSearchesController < ApplicationController
   def new
     @user_search = UserSearch.new
   end
+
   # POST /user_searches or /user_searches.json
   def create
     @user_search = UserSearch.new(user_search_params)
