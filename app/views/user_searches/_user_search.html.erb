@@ -3,12 +3,12 @@
     <thead>
       <tr>
         <th scope="col">id</th>
-        <th scope="col">Make</th>
-        <th scope="col">Model</th>
-        <th scope="col">Year from</th>
-        <th scope="col">Year to</th>
-        <th scope="col">Price from</th>
-        <th scope="col">Price to</th>
+        <th scope="col"><%= t('cars_search.parameters.make')%></th>
+        <th scope="col"><%= t('cars_search.parameters.model')%></th>
+        <th scope="col"><%= t('cars_search.parameters.year_from')%></th>
+        <th scope="col"><%= t('cars_search.parameters.year_to')%></th>
+        <th scope="col"><%= t('cars_search.parameters.price_from')%></th>
+        <th scope="col"><%= t('cars_search.parameters.price_to')%></th>
       </tr>
     </thead>
     <tbody>
@@ -34,9 +34,6 @@
         </td>
         <td>
           <%= user_search.price_to %>
-        </td>
-        <td>
-          <%= link_to 'show result', user_search %>
         </td>
       </tr>
       <% end %>

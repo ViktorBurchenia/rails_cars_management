@@ -1,7 +1,7 @@
   <h1>Search</h1>
 
 <%= form_with url: cars_path, method: :get, data: {turbo: false}, class: 'search-form' do |form|%>
-  <%= form.label :make, style: "display: block"%>
+ <%= form.label t('cars_search.parameters.make'), style: "display: block" %>
   <%= form.text_field :make, value: params[:make] %>
   <%= form.label t('cars_search.parameters.model'), style: "display: block" %>
   <%= form.text_field :model, value: params[:model] %>
