@@ -63,6 +63,7 @@ class CarsController < ApplicationController
 
   # GET /cars/1/edit
   def search
+    @cars = Car.where(build_search_params).page(params[:page])
     render 'search/search_car'
   end
 
