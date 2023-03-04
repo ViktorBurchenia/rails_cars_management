@@ -49,6 +49,8 @@ gem 'pg'
 
 gem 'devise'
 
+gem 'devise-i18n'
+
 gem 'pry'
 
 gem 'kaminari'
