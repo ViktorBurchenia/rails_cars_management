@@ -23,14 +23,6 @@ class CarsController < ApplicationController
   # GET /cars/1 or /cars/1.json
   def show; end
 
-  # GET /cars/new
-  def new
-    @car = Car.new
-  end
-
-  # GET /cars/1/edit
-  def edit; end
-
   # POST /cars or /cars.json
   def create
     @car = Car.new(car_params)
@@ -79,8 +71,8 @@ class CarsController < ApplicationController
 
   def build_search_params
     search_params = {}
-    search_params[:make] = params[:make] if params[:make].present?
-    search_params[:model] = params[:model] if params[:model].present?
+    search_params[:make] = params[:make].capitalize if params[:make].present?
+    search_params[:model] = params[:model].capitalize if params[:model].present?
 
     add_year_param(search_params)
     add_price_param(search_params)
